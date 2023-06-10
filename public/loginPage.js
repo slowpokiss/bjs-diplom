@@ -7,7 +7,17 @@ Uform.loginFormCallback = function(data) {
     if (response.success) {
       location.reload();
     } else {
-      alert(response.error);
+      Uform.setLoginErrorMessage(response.error);
+    }
+  });
+};
+
+Uform.registerFormCallback = function(data) {
+  ApiConnector.register(data, response => {
+    if (response.success) {
+      location.reload();
+    } else {
+      Uform.setLoginErrorMessage(response.error);
     }
   });
 };
