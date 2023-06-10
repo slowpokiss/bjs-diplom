@@ -39,8 +39,9 @@ moneyMan.addMoneyCallback = function (data) {
   ApiConnector.addMoney(data, response => {
     if (response.success) {
       ProfileWidget.showProfile(response.data);
+      moneyMan.setMessage(true, "Баланс успешно пополнен")
     } else {
-      moneyMan.setMessage(response, response.error)
+      moneyMan.setMessage(false, response.error)
     }
   })
 } 
@@ -49,8 +50,9 @@ moneyMan.conversionMoneyCallback = function (data) {
   ApiConnector.convertMoney(data, response => {
     if (response.success) {
       ProfileWidget.showProfile(response.data);
+      moneyMan.setMessage(true, "Валюта успешно конвертирована")
     } else {
-      moneyMan.setMessage(response, response.error)
+      moneyMan.setMessage(false, response.error)
     }
   })
 }
@@ -59,8 +61,9 @@ moneyMan.sendMoneyCallback = function (data) {
   ApiConnector.transferMoney(data, response => {
     if (response.success) {
       ProfileWidget.showProfile(response.data);
+      moneyMan.setMessage(true, "Деньги успешно переведены")
     } else {
-      moneyMan.setMessage(response, response.error)
+      moneyMan.setMessage(false, response.error)
     }
   })
 }
@@ -80,8 +83,9 @@ favWid.addUserCallback = function (data) {
       favWid.clearTable();
       favWid.fillTable(response.data);
       moneyMan.updateUsersList(response.data);
+      moneyMan.setMessage(true, "Новый пользоватль успешно добавлен")
     } else {
-      favWid.setMessage(response, response.error);
+      favWid.setMessage(false, response.error);
     }
   })
 }
@@ -92,8 +96,9 @@ favWid.removeUserCallback = function (id) {
       favWid.clearTable();
       favWid.fillTable(response.data);
       moneyMan.updateUsersList(response.data);
+      moneyMan.setMessage(true, "Пользоватль успешно исключен из списка")
     } else {
-      favWid.setMessage(response, response.error);
+      favWid.setMessage(false, response.error);
     }
   })
 }
